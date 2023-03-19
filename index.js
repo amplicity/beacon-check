@@ -11,16 +11,12 @@ exports.handler = async () => {
 			let prev = balanceHistory[i];
 			if (prev.balance < balanceHistory[i+1].balance ){
 				balanceWentDown = true;
-				console.log('prev in here', prev)
-				console.log('current in here', balanceHistory[i+1])
 				break;
 			}
 		}
 
 		if (balanceWentDown){
 			axios.post(process.env.SLACK_WEBHOOK_URL, {text: '😱 Node balance has decreased. Check ' + process.env.BEACONCHAIN_URL + process.env.PUBLIC_KEY})
-		} else {
-			axios.post(process.env.SLACK_WEBHOOK_URL, {text: '👍 Node balance is fine. Check ' + process.env.BEACONCHAIN_URL + process.env.PUBLIC_KEY})
 		}
 
 	}).catch((err) => {
