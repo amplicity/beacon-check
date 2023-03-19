@@ -7,7 +7,6 @@ exports.handler = async () => {
 		const balanceHistory = res.data.data;
 		let balanceWentDown = false;
 		for (let i = 0; i < 10; i++) {
-			// console.log('balanceHistory for index ' + i, balanceHistory[i]);
 			let prev = balanceHistory[i];
 			if (prev.balance < balanceHistory[i+1].balance ){
 				balanceWentDown = true;
